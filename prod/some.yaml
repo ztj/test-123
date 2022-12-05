@@ -1,1 +1,4 @@
-{"json is valid yaml"}
+do:
+  it:
+    right: ok?
+
