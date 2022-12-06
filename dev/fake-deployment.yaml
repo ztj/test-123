@@ -1,3 +1,3 @@
 # In this fake deployment, all you need is one parameter
-image: somecontainer:v1.0.5
+image: somecontainer:v1.0.6
 
