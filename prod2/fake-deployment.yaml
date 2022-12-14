@@ -1,0 +1,3 @@
+# In this fake deployment, all you need is one parameter
+image: othercontainer:v1.0.0
+
