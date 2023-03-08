@@ -1,3 +1,8 @@
-# In this fake deployment, all you need is one parameter
-image: othercontainer:v1.0.3
+app: audit-trail
+# language=yaml
+version: |
+  image:
+    repository: "ghcr.io/mastercontrolinc/audit-trail"
+    pullPolicy: IfNotPresent
+    tag: "0.1.618"
 
