@@ -4,5 +4,5 @@ version: |
   image:
     repository: "ghcr.io/mastercontrolinc/audit-trail"
     pullPolicy: IfNotPresent
-    tag: "0.1.622"
+    tag: "0.1.624"
 
