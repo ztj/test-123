@@ -4,5 +4,5 @@ version: |
   image:
     repository: "ghcr.io/mastercontrolinc/mx-availability-cache"
     pullPolicy: IfNotPresent
-    tag: "0.1.101"
+    tag: "0.1.176"
 
