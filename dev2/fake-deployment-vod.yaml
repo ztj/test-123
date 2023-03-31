@@ -1,0 +1,8 @@
+app: validation-on-demand
+# language=yaml
+version: |
+  image:
+    repository: "ghcr.io/mastercontrolinc/validation-on-demand"
+    pullPolicy: IfNotPresent
+    tag: "0.1.98"
+
