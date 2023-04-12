@@ -1,0 +1,8 @@
+app: identity
+# language=yaml
+version: |
+  image:
+    repository: "ghcr.io/mastercontrolinc/identity"
+    pullPolicy: IfNotPresent
+    tag: "0.1.271"
+
