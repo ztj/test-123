@@ -1,4 +1,4 @@
-name: "Change Notification (${{ inputs.env_name }})"
+name: "Change Notification"
 "on":
   workflow_call:
     inputs:
