@@ -5,12 +5,10 @@ name: Change Notification (Stage)
       - "main"
     paths:
       - 'apps/*/ap-stage/version.yaml'
-env:
-  PATTERN: 'apps/*/ap-stage/version.yaml'
-  ENV_NAME: 'Stage'
+
 jobs:
   announce-change:
-    uses: ./.github/workflows/change-notify.yaml
+    uses: ./.github/workflows/changes-notify.yaml
     with:
-      pattern: "${{ env.PATTERN }}"
-      env_name: "${{ env.ENV_NAME }}"
+      pattern: "apps/*/ap-stage/version.yaml"
+      env_name: "Stage"

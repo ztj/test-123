@@ -5,12 +5,10 @@ name: Change Notification (Production)
       - "main"
     paths:
       - 'apps/*/ap-prod-*/version.yaml'
-env:
-  PATTERN: 'apps/*/ap-prod-*/version.yaml'
-  ENV_NAME: 'Production'
+
 jobs:
   announce-change:
     uses: ./.github/workflows/change-notify.yaml
     with:
-      pattern: "${{ env.PATTERN }}"
-      env_name: "${{ env.ENV_NAME }}"
+      pattern: "apps/*/ap-prod-*/version.yaml"
+      env_name: "Production"
