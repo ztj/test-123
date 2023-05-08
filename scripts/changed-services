@@ -4,14 +4,55 @@ set -Eeuo pipefail
 PATTERN=${1:-"apps/*/ap-stage/version.yaml"}
 SVC_NAME_PATH_DEPTH=${2:-2}
 
+# https://stackoverflow.com/a/30576368
+qsort() {
+   (($#==0)) && return 0
+   local stack=( 0 $(($#-1)) ) beg end i pivot smaller larger
+   qsort_ret=("$@")
+   while ((${#stack[@]})); do
+      beg=${stack[0]}
+      end=${stack[1]}
+      stack=( "${stack[@]:2}" )
+      smaller=() larger=()
+      pivot=${qsort_ret[beg]}
+      for ((i=beg+1;i<=end;++i)); do
+         if [[ "${qsort_ret[i]}" < "$pivot" ]]; then
+            smaller+=( "${qsort_ret[i]}" )
+         else
+            larger+=( "${qsort_ret[i]}" )
+         fi
+      done
+      qsort_ret=( "${qsort_ret[@]:0:beg}" "${smaller[@]}" "$pivot" "${larger[@]}" "${qsort_ret[@]:end+1}" )
+      if ((${#smaller[@]}>=2)); then stack+=( "$beg" "$((beg+${#smaller[@]}-1))" ); fi
+      if ((${#larger[@]}>=2)); then stack+=( "$((end-${#larger[@]}+1))" "$end" ); fi
+   done
+}
+
+# Get array of services name components of paths
 idx=0
 for name in $(git log -1 --name-only --pretty='')
 do
     if [[ "$name" == $PATTERN ]]
     then
-        services[$idx]="$(echo -n "$name" | cut -d / -f "$SVC_NAME_PATH_DEPTH")"
+        unsorted[$idx]="$(echo -n "$name" | cut -d / -f "$SVC_NAME_PATH_DEPTH")"
         idx=$((idx+1))
     fi
+done
+
+# Sort that array of service name components
+qsort "${unsorted[@]}"
+
+# Deduplicate sorted array of service name components
+idx=0
+previous=""
+for value in "${qsort_ret[@]}"
+do
+    if [[ "$value" != "$previous" ]]
+    then
+        services[$idx]="$value"
+        idx=$((idx+1))
+    fi
+    previous="$value"
 done
 
 printf -v joined '%s, ' "${services[@]}"
