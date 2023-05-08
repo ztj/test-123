@@ -1,0 +1,23 @@
+name: Change Notification (Production)
+"on":
+  push:
+    branches:
+      - "main"
+    paths:
+      - 'apps/*/ap-prod-*/version.yaml'
+env:
+  PATTERN: 'apps/*/ap-prod-*/version.yaml'
+  ENV_NAME: 'Production'
+jobs:
+  announce-change:
+    name: "Announce Change"
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Discover changes
+        run: |
+          echo "CHANGED_SERVICES=$(scripts/changed-services "$PATTERN")" >> $GITHUB_ENV
+      - name: List changes
+        run: echo ${{ env.CHANGED_SERVICES }}
