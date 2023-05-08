@@ -8,6 +8,7 @@ name: Change Notification (Stage)
 
 jobs:
   announce-change:
+    name: "Announce Change"
     uses: ./.github/workflows/changes-notify.yaml
     with:
       pattern: "apps/*/ap-stage/version.yaml"

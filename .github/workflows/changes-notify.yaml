@@ -22,3 +22,5 @@ jobs:
           echo "CHANGED_SERVICES=$(scripts/changed-services "${{ inputs.pattern }}")" >> $GITHUB_ENV
       - name: List changes
         run: echo ${{ env.CHANGED_SERVICES }}
+      - name: State commit URL
+        run: echo "${{ github.server_url }}/${{ github.repository }}/commit/${{github.sha}}"
