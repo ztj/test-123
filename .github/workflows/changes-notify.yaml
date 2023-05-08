@@ -17,10 +17,10 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Discover changes
+      - name: Discover Changed Services
         run: |
           echo "CHANGED_SERVICES=$(scripts/changed-services "${{ inputs.pattern }}")" >> $GITHUB_ENV
-      - name: List changes
-        run: echo ${{ env.CHANGED_SERVICES }}
-      - name: State commit URL
-        run: echo "${{ github.server_url }}/${{ github.repository }}/commit/${{github.sha}}"
+      - name: Explain Changes
+        run: |
+          echo The following apps or services have been updated in the "${{ inputs.env_name}}" environment: "${{ env.CHANGED_SERVICES }}"
+          echo See "${{ github.server_url }}/${{ github.repository }}/commit/${{github.sha}}" for the commit that triggered this notification
