@@ -18,6 +18,6 @@ jobs:
           fetch-depth: 0
       - name: Discover changes
         run: |
-          echo "CHANGED_SERVICES=$(scripts/changed-services $PATTERN)" >> $GITHUB_ENV
+          echo "CHANGED_SERVICES=$(scripts/changed-services "$PATTERN")" >> $GITHUB_ENV
       - name: List changes
         run: echo ${{ env.CHANGED_SERVICES }}
