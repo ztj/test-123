@@ -16,14 +16,8 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: List changes
+      - name: Discover changes
         run: |
-          set -e
-          echo "Promotion to $ENV_NAME has occurred"
-          for name in $(git log -1 --name-only --pretty='')
-          do
-              if [[ "$name" == $PATTERN ]]
-              then
-                  echo "Changed: $name"
-              fi
-          done
+          echo "CHANGED_SERVICES=$(scripts/changed-services $PATTERN)" >> $GITHUB_ENV
+      - name: List changes
+        run: echo ${{ env.CHANGED_SERVICES }}
