@@ -8,7 +8,7 @@ name: Change Notification (Production)
 
 jobs:
   announce-change:
-    uses: ./.github/workflows/change-notify.yaml
+    uses: ./.github/workflows/changes-notify.yaml
     with:
       pattern: "apps/*/ap-prod-*/version.yaml"
       env_name: "Production"
