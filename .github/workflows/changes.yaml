@@ -1,0 +1,23 @@
+name: Change Notification
+"on":
+  push:
+    branches:
+      - "main"
+    paths:
+      - 'apps/*/ap-stage/version.yaml'
+jobs:
+  announce-change:
+    name: "Announce Change"
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Promotion to stage has occurred"
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - run: |
+          set -e
+          echo "Promotion to stage has occurred"
+          for name in git log -1 --name-only --pretty=''
+          do
+            echo "$name"
+          done
