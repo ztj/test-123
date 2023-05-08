@@ -5,20 +5,25 @@ name: Change Notification
       - "main"
     paths:
       - 'apps/*/ap-stage/version.yaml'
+env:
+  PATTERN: 'apps/*/ap-stage/version.yaml'
+  ENV_NAME: 'Stage'
 jobs:
   announce-change:
     name: "Announce Change"
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Promotion to stage has occurred"
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
       - name: List changes
         run: |
           set -e
-          echo "Promotion to stage has occurred"
+          echo "Promotion to $ENV_NAME has occurred"
           for name in $(git log -1 --name-only --pretty='')
           do
-            echo "$name"
+              if [[ "$name" == $PATTERN ]]
+              then
+                  echo "Changed: $name"
+              fi
           done
