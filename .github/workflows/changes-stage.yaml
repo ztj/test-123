@@ -10,14 +10,7 @@ env:
   ENV_NAME: 'Stage'
 jobs:
   announce-change:
-    name: "Announce Change"
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Discover changes
-        run: |
-          echo "CHANGED_SERVICES=$(scripts/changed-services "$PATTERN")" >> $GITHUB_ENV
-      - name: List changes
-        run: echo ${{ env.CHANGED_SERVICES }}
+    uses: ./.github/workflows/change-notify.yaml
+    with:
+      pattern: "${{ env.PATTERN }}"
+      env_name: "${{ env.ENV_NAME }}"

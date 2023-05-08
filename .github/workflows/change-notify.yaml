@@ -1,0 +1,24 @@
+name: "Change Notification (${{ inputs.env_name }})"
+"on":
+  workflow_call:
+    inputs:
+      pattern:
+        required: true
+        type: string
+      env_name:
+        required: true
+        type: string
+
+jobs:
+  announce-change:
+    name: "Announce Change"
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Discover changes
+        run: |
+          echo "CHANGED_SERVICES=$(scripts/changed-services "${{ inputs.pattern }}")" >> $GITHUB_ENV
+      - name: List changes
+        run: echo ${{ env.CHANGED_SERVICES }}
