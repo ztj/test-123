@@ -35,7 +35,7 @@ do
    # shellcheck disable=SC2053
    if [[ "$name" == $PATTERN ]]
    then
-      unsorted[idx]="$(echo -n "$name" | cut -d / -f "$SVC_NAME_PATH_DEPTH")"
+      unsorted[idx]="$(echo -n "$name" | cut -d / -f "$SVC_NAME_PATH_DEPTH") _$(grep -E 'tag|artifact_name|chg' "$name" | cut -d : -f 2 | tr -d \[:space:\]\"\')_"
       idx=$((idx+1))
    fi
 done
