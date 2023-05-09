@@ -24,13 +24,14 @@ jobs:
         run: |
           echo The following apps or services have been updated in the "${{ inputs.env_name}}" environment: "${{ env.CHANGED_SERVICES }}"
           echo See "${{ github.server_url }}/${{ github.repository }}/commit/${{github.sha}}" for the commit that triggered this notification
-      - name: Slack Notification
-        uses: slackapi/slack-github-action@v1.23.0
-        env:
-          SLACK_WEBHOOK_URL: "${{ secrets.GITOPS_PROMOTIONS_SLACK_WEBHOOK_URL }}"
-          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
-        with:
-          payload: |
-            {
-              "text" : "*Promotion to ${{ inputs.env_name }}*\n\nNew versions have been specified for the following apps or services in the *${{ inputs.env_name}}* environment:\n\n${{ env.CHANGED_SERVICES }}\n_<${{ github.server_url }}/${{ github.repository }}/commit/${{github.sha}}|more info...>_"
-            }
+      # Commented out in the test repo
+      # - name: Slack Notification
+      #   uses: slackapi/slack-github-action@v1.23.0
+      #   env:
+      #     SLACK_WEBHOOK_URL: "${{ secrets.GITOPS_PROMOTIONS_SLACK_WEBHOOK_URL }}"
+      #     SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+      #   with:
+      #     payload: |
+      #       {
+      #         "text" : "*Promotion to ${{ inputs.env_name }}*\n\nNew versions have been specified for the following apps or services in the *${{ inputs.env_name}}* environment:\n\n${{ env.CHANGED_SERVICES }}\n_<${{ github.server_url }}/${{ github.repository }}/commit/${{github.sha}}|more info...>_"
+      #       }
