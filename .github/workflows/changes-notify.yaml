@@ -25,7 +25,7 @@ jobs:
           echo The following apps or services have been updated in the "${{ inputs.env_name}}" environment: "${{ env.CHANGED_SERVICES }}"
           echo See "${{ github.server_url }}/${{ github.repository }}/commit/${{github.sha}}" for the commit that triggered this notification
       - name: Slack Notification
-        uses: slackapi/slack-github-action@v1.23
+        uses: slackapi/slack-github-action@v1.23.0
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.GITOPS_PROMOTIONS_SLACK_WEBHOOK_URL }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
