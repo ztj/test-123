@@ -10,6 +10,7 @@ jobs:
   announce-change:
     name: "Announce Change"
     uses: ./.github/workflows/changes-notify.yaml
+    secrets: inherit
     with:
       pattern: "apps/*/ap-prod-*/version.yaml"
       env_name: "Production"
