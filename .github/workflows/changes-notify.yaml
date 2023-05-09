@@ -32,5 +32,5 @@ jobs:
         with:
           payload: |
             {
-              "text" : "*Promotion: ${{ inputs.env_name }}*\n\nNew versions have been specified for the following apps or services in the *${{ inputs.env_name}}* environment:\n\n${{ env.CHANGED_SERVICES }}\n\n_<${{ github.server_url }}/${{ github.repository }}/commit/${{github.sha}}|more info...>_"
+              "text" : "*Promotion to ${{ inputs.env_name }}*\n\nNew versions have been specified for the following apps or services in the *${{ inputs.env_name}}* environment:\n\n${{ env.CHANGED_SERVICES }}\n_<${{ github.server_url }}/${{ github.repository }}/commit/${{github.sha}}|more info...>_"
             }
