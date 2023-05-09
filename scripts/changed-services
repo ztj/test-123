@@ -56,5 +56,5 @@ do
     previous="$value"
 done
 
-printf -v joined "\\\\n- %s" "${services[@]}"
-printf "%s\\\\n" "$joined"
+printf -v joined "  ‣ %s\\\\n" "${services[@]}"
+printf "%s" "$joined"
