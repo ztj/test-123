@@ -10,7 +10,7 @@ name: "Change Notification"
         type: string
 
 jobs:
-  determine-change:
+  change-notification:
     name: "Determine Change"
     runs-on: ubuntu-latest
     steps:
@@ -24,12 +24,6 @@ jobs:
         run: |
           echo The following apps or services have been updated in the "${{ inputs.env_name}}" environment: "${{ env.CHANGED_SERVICES }}"
           echo See "${{ github.server_url }}/${{ github.repository }}/commit/${{github.sha}}" for the commit that triggered this notification
-  send-notification:
-    name: "Send Notification"
-    runs-on: ubuntu-latest
-    needs:
-      - determine-change
-    steps:
       - name: Slack Notification
         uses: slackapi/slack-github-action@v1.23
         env:
