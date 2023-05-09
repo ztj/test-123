@@ -32,5 +32,5 @@ jobs:
         with:
           payload: |
             {
-              "text" : "The following apps or services have been updated in the \"${{ inputs.env_name}}\" environment: ${{ env.CHANGED_SERVICES }}. See \"${{ github.server_url }}/${{ github.repository }}/commit/${{github.sha}}\" for the commit that triggered this notification."
+              "text" : "The following apps or services have been updated in the \"${{ inputs.env_name}}\" environment:\n\n    ${{ env.CHANGED_SERVICES }}\n\nSee ${{ github.server_url }}/${{ github.repository }}/commit/${{github.sha}} for the commit that triggered this notification."
             }
