@@ -1,6 +1,11 @@
 on:
   workflow_dispatch:
-  
+    inputs:
+      a:
+        description: 'A'
+        required: false
+        default: 'a'
+        type: string
 jobs:
   print_context:
     runs-on: ubuntu-latest
