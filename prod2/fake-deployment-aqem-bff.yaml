@@ -1,5 +1,8 @@
-app: aqem
+app: aqem-bff
 # language=yaml
 version: |
-  artifact_name: aqem-bff-20230623175149
+  image:
+    repository: "ghcr.io/mastercontrolinc/aqem-bff"
+    pullPolicy: IfNotPresent
+    tag: "20230607153956"
 
