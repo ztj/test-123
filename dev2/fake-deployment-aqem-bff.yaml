@@ -4,4 +4,4 @@ version: |
   image:
     repository: "ghcr.io/mastercontrolinc/aqem-bff"
     pullPolicy: IfNotPresent
-    tag: "20230726015251"
+    tag: "20230623181859"
